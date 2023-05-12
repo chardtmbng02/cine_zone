@@ -2,7 +2,7 @@
 const movieDisplay = document.querySelector("#popular-movies");
 
 // Fetch data from TMDB API
-const api_Url = "https://api.themoviedb.org/3/movie/";
+const api_Url = "https://api.themoviedb.org/3/";
 const api_Key = "?api_key=a2cb6a5578c78a926883617fb6e2aedd";
 
 
@@ -12,7 +12,7 @@ const api_Key = "?api_key=a2cb6a5578c78a926883617fb6e2aedd";
 
 async function fetchPopularMovies() {
   try {
-    const response = await fetch(api_Url + 'popular' + api_Key);
+    const response = await fetch(api_Url + 'movie/popular' + api_Key);
     const data = await response.json();
     return data.results;
   } catch (error) {
@@ -51,12 +51,67 @@ PopularMovies();
 
 
 // ########################################
+// #            TV Shows            #
+// ########################################
+
+async function fetchTV_Shows() {
+  try {
+    const response = await fetch(api_Url + 'tv/popular' + api_Key);
+    const tv_show_data = await response.json();
+    return tv_show_data.results;
+  } catch (error) {
+    console.error(error);
+  }
+  console.log(response);
+}
+
+const TV_Shows = async () => {
+  const TV_Shows = await fetchTV_Shows();
+  const container = document.getElementById("popular-shows");
+  TV_Shows.forEach((TV_Show) => {
+    const div = document.createElement("div");
+      div.classList.add("card");
+      div.innerHTML = `
+            <a href="tv-details.html?id=${TV_Show.id}">
+              ${
+                TV_Show.poster_path
+                  ? `<img
+                src="https://image.tmdb.org/t/p/w500${TV_Show.poster_path}"
+                class="card-img-top"
+                alt="${TV_Show.name}"
+              />`
+                  : `<img
+              src="../images/no-image.jpg"
+              class="card-img-top"
+              alt="${TV_Show.name}"
+            />`
+              }
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">${TV_Show.name}</h5>
+              <p class="card-text">
+                <small class="text-muted">Air Date: ${TV_Show.first_air_date}</small>
+              </p>
+            </div>
+          `;
+  
+      document.querySelector("#popular-shows").appendChild(div);
+    });
+};
+
+TV_Shows();
+
+
+
+
+
+// ########################################
 // #             Now Playing              #
 // ########################################
 
 async function fetchNowPlayingMovies() {
   try {
-    const now_playing_response = await fetch(api_Url + 'now_playing' + api_Key);
+    const now_playing_response = await fetch(api_Url + 'movie/now_playing' + api_Key);
     const now_playing_data = await now_playing_response.json();
 
     console.log(now_playing_data);
@@ -83,10 +138,14 @@ const NowPlayingMovies = async () => {
     `;
 
     document.querySelector(".swiper-wrapper").appendChild(div);
+
     startSwiper();
+
   });
 };
 NowPlayingMovies();
+
+
 
 function startSwiper() {
   const swiper = new Swiper(".swiper", {
