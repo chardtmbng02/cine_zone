@@ -73,19 +73,7 @@ const TV_Shows = async () => {
       div.classList.add("card");
       div.innerHTML = `
             <a href="tv-details.html?id=${TV_Show.id}">
-              ${
-                TV_Show.poster_path
-                  ? `<img
-                src="https://image.tmdb.org/t/p/w500${TV_Show.poster_path}"
-                class="card-img-top"
-                alt="${TV_Show.name}"
-              />`
-                  : `<img
-              src="../images/no-image.jpg"
-              class="card-img-top"
-              alt="${TV_Show.name}"
-            />`
-              }
+             <img src="https://image.tmdb.org/t/p/w500${TV_Show.poster_path}" class="card-img-top" alt="${TV_Show.name}"/> 
             </a>
             <div class="card-body">
               <h5 class="card-title">${TV_Show.name}</h5>
