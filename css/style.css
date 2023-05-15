@@ -126,10 +126,8 @@ ul {
   padding: 5px;
 }
 
-.card2 {
-  margin: auto;
-  width: 300px;
-  display: block;
+.card h5{
+  font-size: 11px;
 }
 
 .card img {
