@@ -156,17 +156,6 @@ function search(e){
     }
   });
 }
-function init(){
-  itemSearch.addEventListener('input',  search); 
-
-}
-init();
-
-
-
-
-
-
 
 // ########################################
 // #            Movie Details             #
@@ -182,6 +171,7 @@ init();
 NowPlayingMovies();
 PopularMovies();
 TV_Shows();
+itemSearch.addEventListener('input',  search);
 
 // ########################################
 // #             Swiper Area              #
