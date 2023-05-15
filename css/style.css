@@ -126,6 +126,12 @@ ul {
   padding: 5px;
 }
 
+.card2 {
+  margin: auto;
+  width: 300px;
+  display: block;
+}
+
 .card img {
   width: 100%;
 }
@@ -245,7 +251,7 @@ section h2 {
   margin: 15px 0;
   padding-bottom: 8px;
   border-bottom: 1px solid #fff;
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff1a;
 }
 
 /* Search */
